@@ -1,12 +1,23 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
+import express from 'express';
+import mongoose from 'mongoose';
+import router from './routes/urlRoutes.js';
+import 'dotenv/config';
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
+mongoose.connect(process.env.DB_URL).then(() => {
+  console.log('MongoDB connected');
+}).catch(err => {
+  console.error('MongoDB connection error:', err);
+  process.exit(1);
+});
 
-app.listen(port, () => {
- console.log(`Server is listening at port:${port}`);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/', router);
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });

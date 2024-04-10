@@ -7,7 +7,7 @@ const urlSchema = new mongoose.Schema(
 			required :true,
 			unique :true,
 		},
-		OriginalID:{
+		originalID:{
 			type : String,
 			required: true,
 		}
