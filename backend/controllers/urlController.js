@@ -1,10 +1,8 @@
 import { nanoid } from 'nanoid';
 import URL from '../models/urlModel.js';
 
-const baseUrl = 'https://mini-url';
-
 const shortenUrl = async (req, res) => {
-  const { originalURL } = req.body; // Change from originalID to originalURL
+  const { originalURL } = req.body;
 
   try {
     let url = await URL.findOne({ originalURL });
@@ -13,11 +11,10 @@ const shortenUrl = async (req, res) => {
       res.json(url);
     } else {
       const shortID = nanoid(8);
-      const shortUrl = `${baseUrl}/${shortID}`;
 
       url = new URL({
         originalURL,
-        shortURL: shortUrl
+        shortID: shortID
       });
 
       await url.save();
@@ -33,7 +30,7 @@ const redirectToOriginalUrl = async (req, res) => {
   const { shortID } = req.params;
 
   try {
-    const url = await URL.findOne({ shortURL: `${baseUrl}/${shortID}` });
+    const url = await URL.findOne({ shortID });
 
     if (url) {
       return res.redirect(url.originalURL);

@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 const urlSchema = new mongoose.Schema(
 	{
-		shortURL:{
+		shortID:{
 			type : String,
 			required :true,
 			unique :true,
