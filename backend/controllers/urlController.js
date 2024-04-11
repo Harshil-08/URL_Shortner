@@ -10,11 +10,10 @@ const shortenUrl = async (req, res) => {
     if (url) {
       res.json(url);
     } else {
-      const shortID = nanoid(8);
-
+      const shortId = nanoid(8);
       url = new URL({
-        originalURL,
-        shortID: shortID
+        originalURL:originalURL,
+        shortID: shortId
       });
 
       await url.save();
