@@ -2,12 +2,12 @@ import mongoose from "mongoose"
 
 const urlSchema = new mongoose.Schema(
 	{
-		shortID:{
+		shortURL:{
 			type : String,
 			required :true,
 			unique :true,
 		},
-		originalID:{
+		originalURL:{
 			type : String,
 			required: true,
 		}

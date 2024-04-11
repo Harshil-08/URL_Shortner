@@ -4,10 +4,10 @@ import URL from '../models/urlModel.js';
 const baseUrl = 'https://mini-url';
 
 const shortenUrl = async (req, res) => {
-  const { originalID } = req.body;
+  const { originalURL } = req.body; // Change from originalID to originalURL
 
   try {
-    let url = await URL.findOne({ originalID });
+    let url = await URL.findOne({ originalURL });
 
     if (url) {
       res.json(url);
@@ -16,8 +16,8 @@ const shortenUrl = async (req, res) => {
       const shortUrl = `${baseUrl}/${shortID}`;
 
       url = new URL({
-        originalID,
-        shortID
+        originalURL,
+        shortURL: shortUrl
       });
 
       await url.save();
@@ -33,10 +33,10 @@ const redirectToOriginalUrl = async (req, res) => {
   const { shortID } = req.params;
 
   try {
-    const url = await URL.findOne({ shortID });
+    const url = await URL.findOne({ shortURL: `${baseUrl}/${shortID}` });
 
     if (url) {
-      return res.redirect(url.originalID);
+      return res.redirect(url.originalURL);
     } else {
       return res.status(404).json({ message: 'URL not found' });
     }
