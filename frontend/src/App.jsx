@@ -39,7 +39,7 @@ function App() {
 					</button>
 				</form>
 				<div className="md:w-1/2 flex flex-col justify-center">
-					<p>ShortUrl: </p>
+					<p className="text-slate-500">ShortUrl: </p>
 						<div className="flex">
 							<input
 							  className="p-2 outline-none rounded-full border-2 w-full"
