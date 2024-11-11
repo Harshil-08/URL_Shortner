@@ -2,6 +2,7 @@ import express from 'express';
 import cors from "cors";
 import mongoose from 'mongoose';
 import router from './routes/urlRoutes.js';
+import path from "path";
 import 'dotenv/config';
 
 const app = express();
@@ -20,6 +21,12 @@ app.use(cors());
 
 
 app.use('/', router);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

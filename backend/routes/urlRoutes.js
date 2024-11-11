@@ -3,7 +3,7 @@ import { shortenUrl, redirectToOriginalUrl } from '../controllers/urlController.
 
 const router = express.Router();
 
-router.post('/shorten', shortenUrl);
+router.post('/api/shorten', shortenUrl);
 
 router.get('/:shortID', redirectToOriginalUrl);
 
