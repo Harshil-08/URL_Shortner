@@ -45,12 +45,12 @@ function App() {
 							<input
 								className="p-2 bg-gray-900 border border-gray-700 rounded-full text-center text-white w-full"
 								type="text"
-								value={`http://localhost:3000/${shortID}`}
+								value={`https://miniurl-z06g.onrender.com/${shortID}`}
 								readOnly
 							/>
 							<button
 								className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-500 transition-all"
-								onClick={() => copyToClipboard(`http://localhost:3000/${shortID}`)}
+								onClick={() => copyToClipboard(`https://miniurl-z06g.onrender.com/${shortID}`)}
 							>
 								Copy
 							</button>
